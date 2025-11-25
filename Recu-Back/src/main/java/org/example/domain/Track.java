@@ -15,7 +15,8 @@ import java.math.BigDecimal;
 @Builder
 public class Track {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "track_seq", sequenceName = "SEQ_TRACK_ID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "track_seq")
     @Column(name="TRACK_ID")
     private Integer trackId;
 

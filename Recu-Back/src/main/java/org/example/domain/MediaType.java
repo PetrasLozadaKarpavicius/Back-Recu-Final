@@ -14,7 +14,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class MediaType {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "media_type_seq", sequenceName = "SEQ_MEDIA_TYPE_ID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "media_type_seq")
     @Column(name="MEDIA_TYPE_ID")
     private Integer mediaTypeId;
 

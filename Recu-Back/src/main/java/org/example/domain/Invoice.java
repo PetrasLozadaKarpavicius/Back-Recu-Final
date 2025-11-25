@@ -16,7 +16,8 @@ import java.util.Date;
 @Builder
 public class Invoice {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "invoice_seq", sequenceName = "SEQ_INVOICE_ID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "invoice_seq")
     @Column(name="INVOICE_ID")
     private Integer invoiceId;
 

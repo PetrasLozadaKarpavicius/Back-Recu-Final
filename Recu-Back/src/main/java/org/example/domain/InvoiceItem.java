@@ -16,7 +16,8 @@ import java.math.BigDecimal;
 @Builder
 public class InvoiceItem {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @SequenceGenerator(name = "invoice_item_seq", sequenceName = "SEQ_INVOICE_LINE_ID", allocationSize = 1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "invoice_item_seq")
     @Column(name="INVOICE_LINE_ID")
     private Integer invoiceLineId;
     @ManyToOne(optional = false, fetch = FetchType.EAGER)

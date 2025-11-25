@@ -15,7 +15,8 @@ import lombok.NoArgsConstructor;
 
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "customer_seq", sequenceName = "SEQ_CUSTOMER_ID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_seq")
     @Column(name="CUSTOMER_ID")
     private Integer customerId;
     @ManyToOne(optional = true, fetch = FetchType.EAGER)

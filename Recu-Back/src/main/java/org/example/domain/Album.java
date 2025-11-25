@@ -15,7 +15,8 @@ import lombok.NoArgsConstructor;
 
 public class Album {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @SequenceGenerator(name = "album_seq", sequenceName = "SEQ_ALBUM_ID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "album_seq")
     @Column(name="ALBUM_ID")
     private Integer albumId;
     @Column(name="TITLE", length = 160, nullable = false)

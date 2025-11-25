@@ -14,7 +14,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PlaylistTrack {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "playlist_track_seq", sequenceName = "SEQ_PLAYLIST_TRACK_ID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "playlist_track_seq")
     @Column(name="PLAYLIST_TRACK_ID")
     private Integer playlistTrackId;
 

@@ -14,7 +14,8 @@ import lombok.NoArgsConstructor;
 
 public class Genre {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "genre_seq", sequenceName = "SEQ_GENRE_ID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genre_seq")
     @Column(name="GENRE_ID")
     private Integer genreId;
 
