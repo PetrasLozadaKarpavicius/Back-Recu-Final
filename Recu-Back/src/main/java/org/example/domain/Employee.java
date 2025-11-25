@@ -35,9 +35,11 @@ public class Employee {
     @JoinColumn(name = "REPORTS_TO") // <-- nombre real de la FK
     private Employee reportsTo;  // Autorreferencia
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "BIRTH_DATE")
     private Date birthDate;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "HIRE_DATE")
     private Date hireDate;
 
