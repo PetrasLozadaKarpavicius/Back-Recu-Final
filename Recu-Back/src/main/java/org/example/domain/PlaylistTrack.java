@@ -21,9 +21,9 @@ public class PlaylistTrack {
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name="PLAYLIST_ID", nullable = false)
-    private Playlist playlistId;
+    private Playlist playlist;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name="TRACK_ID", nullable = false)
-    private Track trackId;
+    private Track track;
 }

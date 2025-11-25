@@ -5,8 +5,6 @@ import jakarta.persistence.TypedQuery;
 import org.example.domain.Album;
 import org.example.domain.Artist;
 
-
-import java.sql.*;
 import java.util.List;
 
 public class AlbumRepository {
@@ -25,10 +23,9 @@ public class AlbumRepository {
 
     public Album findByTitle(String title){ //busca por titulo
         TypedQuery<Album> q = em.createQuery(
-                "SELECT a FROM Album a WHERE a.title = :title", Album.class);
-        q.setParameter("title", title);
-        try { return q.getSingleResult();
-        } catch (Exception e) { return null; }
+                "SELECT a FROM Album a WHERE UPPER(a.title) = :title", Album.class);
+        q.setParameter("title", title.trim().toUpperCase());
+        return q.getResultStream().findFirst().orElse(null);
     }
 
     public List<Album> findAll(){
@@ -42,10 +39,10 @@ public class AlbumRepository {
         // Buscar por título (y opcionalmente por artista si existe)
         if (artist != null) {
             TypedQuery<Album> q = em.createQuery(
-                    "SELECT a FROM Album a WHERE a.title = :title AND a.artistId = :artist", Album.class);
-            q.setParameter("title", title);
+                    "SELECT a FROM Album a WHERE UPPER(a.title) = :title AND a.artistId = :artist", Album.class);
+            q.setParameter("title", title.trim().toUpperCase());
             q.setParameter("artist", artist);
-            try { return q.getSingleResult(); } catch (Exception e) { /* not found */ }
+            return q.getResultStream().findFirst().orElse(null);
         } else {
             Album existing = findByTitle(title);
             if (existing != null) return existing;
